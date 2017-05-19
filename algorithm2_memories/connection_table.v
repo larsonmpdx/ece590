@@ -8,7 +8,7 @@ parameter DATA_WIDTH = 6;
 parameter NODE_ADDRESS_SIZE = 4;
 parameter ARRAY_LENGTH = 1 << (NODE_ADDRESS_SIZE * 2);
 
-reg [DATA_WIDTH-1:0] connections[0:ARRAY_LENGTH]; // N entry array of DATA_WIDTH bit entries.  entry is connection strength
+reg [DATA_WIDTH-1:0] connections[0:ARRAY_LENGTH-1]; // N entry array of DATA_WIDTH bit entries.  entry is connection strength
                                        // entry address is {node_A, node_B} (node A concatenated with node B)
 
 input CLK;
