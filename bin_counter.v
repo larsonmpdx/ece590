@@ -8,16 +8,31 @@
 // the output bit vector length. One bit will give many additional pulses. Also add a new state to the state machine. 
 
 module bin_counter (q,qbar,load,clk,reset);
-	output [3 : 0] q;
-	output [3 : 0] qbar;
+	output [7 : 0] q;
+	output [7: 0] qbar;
 	input load,clk,reset;
-	wire [0 : 1] temp;
+	wire [5:0] temp;
+		
 		tflipflop ff1 (q[0],qbar[0],load, clk,reset);
 		tflipflop ff2 (q[1],qbar[1],q[0], clk,reset);
+		
 		and (temp[0],q[0],q[1]);
 		tflipflop ff3 (q[2],qbar[2],temp[0], clk,reset);
-		and (temp[1],q[2],q[0],q[1]);
+		
+		and (temp[1],q[2],temp[0]);
 		tflipflop ff4 (q[3],qbar[3],temp[1], clk,reset);
+		
+		and (temp[2],q[3],temp[1]);
+		tflipflop ff5 (q[4],qbar[4],temp[2], clk,reset);
+		
+		and (temp[3],q[4],temp[2]);
+		tflipflop ff6 (q[5],qbar[5],temp[3], clk,reset);
+		
+		and (temp[4],q[5],temp[3]);
+		tflipflop ff7 (q[6],qbar[6],temp[4], clk,reset);
+		
+		and (temp[5],q[6],temp[4]);
+		tflipflop ff8 (q[7],qbar[7],temp[5], clk,reset);
 endmodule
 
 module tflipflop (q,qbar,t,clk,reset);
