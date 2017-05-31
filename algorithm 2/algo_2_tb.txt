@@ -1,0 +1,125 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 05/18/2017 08:08:06 PM
+// Design Name: 
+// Module Name: tb
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module tb;
+
+   logic [3:0] addr;                             // Cx
+   logic [7:0] node_value;                          // Node Value
+   logic ML_Done;                                   // get from algo1 
+   logic resetH, new_ip,clk;                        // signals
+   logic [7:0] Weight;
+   
+   algo_2 tb(.*);
+   // generating clock
+   always #5 clk = ~clk; 
+   
+   initial begin
+       clk = 1'b1;
+       resetH = 1'b1;
+       #20;
+       resetH = 1'b0;
+       #10;
+       new_ip = 1'b1;
+       ML_Done = 1'b1;
+       addr = 4'b0;
+       node_value = 8'd10;
+       Weight = 8'd5;
+       #10;
+       new_ip = 1'b0;
+ // addr=0 ------------------------------------
+       #50;
+       new_ip = 1'b1;
+       ML_Done = 1'b1;
+       addr = 4'd1;
+       node_value = 8'd11;
+       Weight = 8'd6;
+       #10;
+       new_ip = 1'b0;
+       
+ // addr=1 ------------------------------------
+               
+       #50;
+       new_ip = 1'b1;
+       ML_Done = 1'b1;
+       addr = 4'b0;
+       node_value = 8'd10;
+       Weight = 8'd5;
+       #10;
+       new_ip = 1'b0;
+  
+  // addr=0 ------------------------------------
+             
+       #50;
+       new_ip = 1'b1;
+       ML_Done = 1'b1;
+       addr = 4'd1;
+       node_value = 8'd11;
+       Weight = 8'd6;
+       #10;
+       new_ip = 1'b0;
+       
+  // addr=1 ------------------------------------
+              
+        #50;
+        new_ip = 1'b1;
+        ML_Done = 1'b1;
+        addr = 4'd0;
+        node_value = 8'd11;
+        Weight = 8'd6;
+        #10;
+        new_ip = 1'b0;
+    new_ip = 1'b0;
+               
+          // addr=15 ------------------------------------
+                      
+                #50;
+                new_ip = 1'b1;
+                ML_Done = 1'b1;
+                addr = 4'd15;
+                node_value = 8'd11;
+                Weight = 8'd6;
+                #10;
+                new_ip = 1'b0;
+                
+                  #50;
+                      new_ip = 1'b1;
+                      ML_Done = 1'b1;
+                      addr = 4'd0;
+                      node_value = 8'd11;
+                      Weight = 8'd6;
+                      #10;
+                      new_ip = 1'b0;
+                  new_ip = 1'b0;
+                             
+                        // addr=15 ------------------------------------
+                                    
+                              #50;
+                              new_ip = 1'b1;
+                              ML_Done = 1'b1;
+                              addr = 4'd15;
+                              node_value = 8'd11;
+                              Weight = 8'd6;
+                              #10;
+                              new_ip = 1'b0;
+    end 
+
+endmodule
